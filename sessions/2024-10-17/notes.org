@@ -8,3 +8,7 @@ one row in table A references exactly one row in table B
 *** example
 one user in Users table references one settings collection in settings
 table
+
+** many-to-many
+  + each person can read multiple books
+  + each book can be read by many people
