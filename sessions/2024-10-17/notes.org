@@ -43,4 +43,13 @@ table
 
 ** =DELETE CASCADE=
   delete triggers delete of all related records
+
 https://appacademy.instructure.com/courses/314/pages/delete-dependent-data-with-delete-cascade-2?module_item_id=56195
+
+* pagination
+
+display a set number of items per page
+
+then have a link to the next page
+
+start the next page at the offset after all the items from the first page
