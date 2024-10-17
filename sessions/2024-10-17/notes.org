@@ -12,6 +12,7 @@ table
 ** many-to-many
   + each person can read multiple books
   + each book can be read by many people
+** one-to-many
   #+begin_src sql
     CREATE TABLE students (
       id INTEGER PRIMARY KEY,
