@@ -43,3 +43,4 @@ table
 
 ** =DELETE CASCADE=
   delete triggers delete of all related records
+https://appacademy.instructure.com/courses/314/pages/delete-dependent-data-with-delete-cascade-2?module_item_id=56195
