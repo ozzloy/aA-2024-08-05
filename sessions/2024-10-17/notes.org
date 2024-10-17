@@ -65,3 +65,7 @@ start the next page at the offset after all the items from the first page
   SELECT puppies.name, owners.first_name FROM puppies
   JOIN owners ON (puppies.owner_id = owners.id);
 #+end_src
+
+=join table= is a table that just contains ids refrencing other tables.
+
+=join statement/query= queries multiple tables at the same time
