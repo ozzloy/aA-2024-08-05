@@ -55,3 +55,13 @@ then have a link to the next page
 start the next page at the offset after all the items from the first page
 
 * =%= is =.*= from regular expressions
+  + =%dog= matches anything followed by "dog"
+
+
+* combining tables using join
+  https://appacademy.instructure.com/courses/314/pages/combine-tables-using-join-2?module_item_id=56205
+
+#+begin_src sql
+  SELECT puppies.name, owners.first_name FROM puppies
+  JOIN owners ON (puppies.owner_id = owners.id);
+#+end_src
