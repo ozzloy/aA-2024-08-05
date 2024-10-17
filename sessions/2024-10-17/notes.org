@@ -18,7 +18,7 @@ table
       name TEXT
     )
 
-    CREATE TABLE juice_boxes (
+    CREATE TABLE puppies (
       id INTEGER PRIMARY KEY,
       juice TEXT,
       date TEXT,
