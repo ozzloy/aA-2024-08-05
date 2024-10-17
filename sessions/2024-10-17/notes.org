@@ -10,8 +10,17 @@ one user in Users table references one settings collection in settings
 table
 
 ** many-to-many
+*** book people example
   + each person can read multiple books
   + each book can be read by many people
+*** a way to connect a many to many relationship is a 3rd table
+  + the table is a join table
+  + just has ids from 2 other jables
+  + the same id can appear multiple times in the left column,
+    and another id can appear multiple times in the right column
+    + in the example, this would be the same person reading mulitple
+      books, and the same book being read by multiple people
+
 ** one-to-many
   #+begin_src sql
     CREATE TABLE students (
