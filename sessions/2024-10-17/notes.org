@@ -40,3 +40,6 @@ table
 ** =FOREIGN KEY= relates column in one table to column in another table
   typically something like =student_id= in current column is related
   to =id= column in the students table.
+
+** =DELETE CASCADE=
+  delete triggers delete of all related records
