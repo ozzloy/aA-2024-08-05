@@ -1,3 +1,10 @@
 * pre class warmup
 * class content starts
 🦙
+* relationships in a database
+** one-to-one
+one row in table A references exactly one row in table B
+
+*** example
+one user in Users table references one settings collection in settings
+table
