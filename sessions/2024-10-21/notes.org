@@ -58,3 +58,10 @@ possibly not much value in adding indexes in the next few app academy
 projects
 
 allow faster lookup for data sorting
+
+indexing can be used to make sure a combination of fields is unique.
+for example, maybe duplicate first names are allowed, duplicate last
+names are allowed, but every pair of first and last names must be
+unique.
+
+index creates an ordered balanced tree.
