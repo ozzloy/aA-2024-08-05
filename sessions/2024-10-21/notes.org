@@ -95,3 +95,8 @@ naming convention is very descriptive
 the =UNIQUE= there makes the column =full_name= into an index.
 
 this could also be done with a longer second statement.
+
+#+begin_src sql
+  CREATE UNIQUE ...
+    -- i'm not fast enough to type it out
+#+end_src
