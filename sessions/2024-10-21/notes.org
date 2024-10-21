@@ -53,6 +53,7 @@ https://appacademy.instructure.com/courses/314/pages/intro-to-sequelize-learning
 count the number of semicolons
 
 ** indexes in sql
+https://appacademy.instructure.com/courses/314/pages/intro-to-sql-indexes-2?module_item_id=56271
 
 possibly not much value in adding indexes in the next few app academy
 projects
