@@ -139,5 +139,5 @@ know the kinds of things to look out for.
 git clone --branch full-time https://github.com/appacademy/aa11-sql-query-improvement
 #+end_src
 
-https://github.com/appacademy/aa11-sql-query-improvement
+https://github.com/appacademy/aa11-sql-query-improvement/tree/full-time
 
