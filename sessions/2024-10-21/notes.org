@@ -153,5 +153,10 @@ install sql viewer plugin (or something like it)
 https://github.com/appacademy/aa10-express-sql-colors
 
 "Combining Express and SQL"
+"Practice: Combining SQL and Express"
+https://appacademy.instructure.com/courses/314/assignments/17726?module_item_id=56166
 
 ** what is express and sql
+#+begin_src bash
+  npm install dotenv dotenv-cli
+#+end_src
