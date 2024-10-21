@@ -12,3 +12,5 @@ https://appacademy.instructure.com/courses/314/pages/intro-to-sequelize-learning
     + not the same server running the rest of the app code, for example
     + so every query means doing a full network round trip
     + so cramming things into single query is often worth the effort
+    + getting just the necessary data can be worth the effort
+      + sending a small amount of data is faster than sending a large amount
