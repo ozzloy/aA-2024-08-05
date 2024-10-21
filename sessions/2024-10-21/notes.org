@@ -163,3 +163,11 @@ https://appacademy.instructure.com/courses/314/assignments/17726?module_item_id=
 #+end_src
 
 better comments extension makes different colored comments
+
+#+begin_src json
+  "scripts": {
+    "start": "dotenv node app.js",
+    "dev": "dotenv nodemon app.js",
+    "prod": "dotenv node app.js"
+  },
+#+end_src
