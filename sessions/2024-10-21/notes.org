@@ -135,4 +135,9 @@ https://xkcd.com/327/
 sequelize will sanitize inputs for us.  we are new to it so we don't
 know the kinds of things to look out for.
 
+#+begin_src bash
+git clone --branch full-time https://github.com/appacademy/aa11-sql-query-improvement
+#+end_src
+
 https://github.com/appacademy/aa11-sql-query-improvement
+
