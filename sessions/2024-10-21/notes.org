@@ -14,3 +14,17 @@ https://appacademy.instructure.com/courses/314/pages/intro-to-sequelize-learning
     + so cramming things into single query is often worth the effort
     + getting just the necessary data can be worth the effort
       + sending a small amount of data is faster than sending a large amount
+
+#+begin_src javascript
+  const petArr = ["dog", "cat", "parrot"];
+  const toyArr = [];
+
+  for (let i = 0; i < petArr.length; i++) {
+    //...
+    // this is N operations, where N = number
+    // of elements in petArr
+  }
+#+end_src
+#+begin_src sql
+
+#+end_src
