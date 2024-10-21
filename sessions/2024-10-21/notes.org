@@ -125,3 +125,9 @@ result will be =SCAN= or =SEARCH=.
 =SCAN= will check every row
 
 =SEARCH= will use index table
+
+* sql injections
+
+sanitize your inputs
+
+https://xkcd.com/327/
