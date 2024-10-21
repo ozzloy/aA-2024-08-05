@@ -143,3 +143,4 @@ git clone --branch full-time https://github.com/appacademy/aa11-sql-query-improv
 
 https://github.com/appacademy/aa11-sql-query-improvement/tree/full-time
 
+install sql viewer plugin (or something like it)
