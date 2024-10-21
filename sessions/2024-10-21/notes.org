@@ -25,6 +25,26 @@ https://appacademy.instructure.com/courses/314/pages/intro-to-sequelize-learning
     // of elements in petArr
   }
 #+end_src
-#+begin_src sql
 
+#+begin_src sql
+  SELECT type FROM pets;
+
+  SELECT * FROM toys WHERE pet_type = 'dog';
+  SELECT * FROM toys WHERE pet_type = 'cat';
+  SELECT * FROM toys WHERE pet_type = 'parrot';
+#+end_src
+
+#+begin_src sql
+  SELECT * FROM toys JOIN pets ON (pets.type = toys.pet_type);
+#+end_src
+
+#+begin_src sql
+  SELECT * FROM pets;
+  SELECT * FROM toys WHERE pet_type IN ('dog', 'cat', 'parrotf');
+#+end_src
+
+#+begin_src sql
+  select * from toys where pet_type in (
+    select type from pets
+  );
 #+end_src
