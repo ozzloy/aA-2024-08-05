@@ -2,3 +2,6 @@
 * long warmup
   + make projects
   + be excited during interviews
+* going over assessment
+* sequelize
+https://appacademy.instructure.com/courses/314/pages/intro-to-sequelize-learning-objectives-2?module_item_id=56278
