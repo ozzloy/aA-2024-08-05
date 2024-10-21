@@ -176,3 +176,12 @@ zavier prefers doing dotenv-cli to doing it in js code, because he likes
 being able to run "npm run something" to change between envs.
 
 =npm start= and =npm dev= you don't have to say =npm run= in front of
+
+* sequelize
+
+the aA material starts with migrations for some reason.
+
+instead, go to finders,
+#+begin_src javascript
+  const project = await Project.findByPk(123);
+#+end_src
