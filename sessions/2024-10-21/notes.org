@@ -185,3 +185,8 @@ instead, go to finders,
 #+begin_src javascript
   const project = await Project.findByPk(123);
 #+end_src
+
+or simple insert queries
+#+begin_src javascript
+  const jane = await User.create({ firstName: 'Jane', lastName: 'Doe' });
+#+end_src
