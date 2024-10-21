@@ -72,3 +72,9 @@ id will be in a big block.  so as soon as we see a different value, we
 don't need to check any further values.
 
 increase search speed, but slow down insert and delete operations.
+
+*** how to make an index
+naming convention is very descriptive
+#+begin_src sql
+  CREATE INDEX idx_table_name_column_names ON table_name(column_list);
+#+end_src
