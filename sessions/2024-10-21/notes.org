@@ -152,3 +152,6 @@ install sql viewer plugin (or something like it)
 
 https://github.com/appacademy/aa10-express-sql-colors
 
+"Combining Express and SQL"
+
+** what is express and sql
