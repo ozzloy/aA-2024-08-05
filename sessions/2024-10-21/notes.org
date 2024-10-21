@@ -10,3 +10,5 @@ https://appacademy.instructure.com/courses/314/pages/intro-to-sequelize-learning
   + connecting to a db takes time
   + db is on a server somewhere else
     + not the same server running the rest of the app code, for example
+    + so every query means doing a full network round trip
+    + so cramming things into single query is often worth the effort
