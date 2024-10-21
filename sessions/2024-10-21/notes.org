@@ -1,3 +1,6 @@
+* class notes from instructor
+https://github.com/ZaviarBrown/aug-5/tree/main
+
 * let's gooo!
 * long warmup
   + make projects
@@ -144,3 +147,6 @@ git clone --branch full-time https://github.com/appacademy/aa11-sql-query-improv
 https://github.com/appacademy/aa11-sql-query-improvement/tree/full-time
 
 install sql viewer plugin (or something like it)
+
+
+* 
