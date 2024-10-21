@@ -111,3 +111,6 @@ this could also be done with a longer second statement.
 
 not sure what that means.
 
+first value is most important
+
+make sure you'll be using that column most when searching
