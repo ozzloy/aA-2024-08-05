@@ -100,3 +100,14 @@ this could also be done with a longer second statement.
   CREATE UNIQUE ...
     -- i'm not fast enough to type it out
 #+end_src
+
+*** delete an index
+#+begin_src sql
+  DROP INDEX idx_cookies_type_chocolate;
+#+end_src
+
+*** order of an index matters
+"most important index first so we can use it on its own."
+
+not sure what that means.
+
