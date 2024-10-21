@@ -78,3 +78,20 @@ naming convention is very descriptive
 #+begin_src sql
   CREATE INDEX idx_table_name_column_names ON table_name(column_list);
 #+end_src
+
+#+begin_src sql
+  CREATE INDEX
+    idx_cookies_type_chocolate_baker_id
+    ON cookies(type, chocolate, baker_id);
+#+end_src
+
+=PRIMARY KEY= and =UNIQUE= automatically create a single-column index
+#+begin_src sql
+  CREATE TABLE bakers (
+    id INTEGER PRIMARY KEY,
+    full_name VARCHAR UNIQUE
+    );
+#+end_src
+the =UNIQUE= there makes the column =full_name= into an index.
+
+this could also be done with a longer second statement.
