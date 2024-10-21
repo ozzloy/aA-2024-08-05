@@ -114,3 +114,14 @@ not sure what that means.
 first value is most important
 
 make sure you'll be using that column most when searching
+
+#+begin_src sql
+  EXPLAIN QUERY PLAN SELECT * FROM cookies WHERE
+    type = 'sugar';
+#+end_src
+
+result will be =SCAN= or =SEARCH=.
+
+=SCAN= will check every row
+
+=SEARCH= will use index table
