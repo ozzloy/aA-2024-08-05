@@ -66,3 +66,7 @@ names are allowed, but every pair of first and last names must be
 unique.
 
 index creates an ordered balanced tree.
+
+with indexing, column baker_id is ordered by baker_id.  so every baker
+id will be in a big block.  so as soon as we see a different value, we
+don't need to check any further values.
