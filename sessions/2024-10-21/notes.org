@@ -97,7 +97,7 @@ the =UNIQUE= there makes the column =full_name= into an index.
 this could also be done with a longer second statement.
 
 #+begin_src sql
-  CREATE UNIQUE ...
+  CREATE UNIQUE INDEX
     -- i'm not fast enough to type it out
 #+end_src
 
