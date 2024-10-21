@@ -148,3 +148,7 @@ https://github.com/appacademy/aa11-sql-query-improvement/tree/full-time
 
 install sql viewer plugin (or something like it)
 
+* going through this exercise
+
+https://github.com/appacademy/aa10-express-sql-colors
+
