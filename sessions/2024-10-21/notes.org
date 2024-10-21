@@ -131,3 +131,6 @@ result will be =SCAN= or =SEARCH=.
 sanitize your inputs
 
 https://xkcd.com/327/
+
+sequelize will sanitize inputs for us.  we are new to it so we don't
+know the kinds of things to look out for.
