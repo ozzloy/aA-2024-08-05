@@ -171,3 +171,6 @@ better comments extension makes different colored comments
     "prod": "dotenv node app.js"
   },
 #+end_src
+
+zavier prefers doing dotenv-cli to doing it in js code, because he likes
+being able to run "npm run something" to change between envs.
