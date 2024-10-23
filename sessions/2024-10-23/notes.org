@@ -270,6 +270,7 @@ look at the bottom of the output to see the constraint
   // up
   await queryInterface.renameColumn("Games", "numPlayers", "maxPlayers");
   await queryInterface.removeColumn("Games", "estPlayTime");
+
   // down
   await queryInterface.renameColumn("Games", "maxPlayers", "numPlayers");
   await queryInterface.addColumn("Games", "estPlayTime", {
