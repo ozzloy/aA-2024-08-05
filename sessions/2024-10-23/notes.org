@@ -1,4 +1,5 @@
 * aa11-sequelize-create-migrations
+no notes taken during this one, oops
 * aa11-sequelize-undo-migrations
 ** setup commands
 =sh setup-commands.sh=
