@@ -412,7 +412,9 @@ first, find record to delete, then destroy it
 
   // to delete multiple
   await Puppy.destroy({
-    where: "something something, i missed it"
+    where: {
+      name: "ralph"
+    }
   });
 #+end_src
 
@@ -425,12 +427,5 @@ first, find record to delete, then destroy it
     });
 
     await puppy.destroy();
-
-    // to delete multiple
-    await Puppy.destroy({
-      where: {
-        name: "ralph"
-      }
-    });
   });
 #+end_src
