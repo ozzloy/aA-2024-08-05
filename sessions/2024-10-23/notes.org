@@ -50,3 +50,12 @@ specific example:
 #+end_src
 
 note: capitalized, singular name of model
+
+** modify the migration, db, constraints
+some popular constraints
+#+begin_src ecmascript
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+#+end_src
+
