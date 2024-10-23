@@ -7,3 +7,21 @@
   npx dotenv sequelize db:migrate
   sqlite3 db/dev.db ".schema Cats"
 #+end_src
+should get this output
+#+begin_quote
+  $ sqlite3 db/dev.db ".schema Cats"
+  -- Loading resources from /home/ozzloy/.sqliterc
+  CREATE TABLE `Cats` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` VARCHAR(255), `weight` FLOAT);
+#+end_quote
+
+then undo
+#+begin_src bash
+  npx dotenv sequelize db:migrate:undo:all
+  sqlite3 db/dev.db ".schema Cats"
+#+end_src
+
+should get this output
+#+begin_quote
+  $ sqlite3 db/dev.db ".schema Cats"
+  -- Loading resources from /home/ozzloy/.sqliterc
+#+end_quote
