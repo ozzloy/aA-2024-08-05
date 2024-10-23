@@ -286,7 +286,7 @@ then in the file,
 
 * break!
 
-* sequelize
+* let's gooo! create a project from scratch
 setting up is the hardest part
   + migrations
   + models
@@ -297,11 +297,99 @@ setting up is the hardest part
   npx dotenv -- sequelize model:generate --name Puppy --attributes name:string
 #+end_src
 
-* let's gooo!
 #+begin_src bash
   mkdir server-2024-10-23
   cd server-2024-10-23
   npm init -y
-  npm install -D dotenv-cli
-  npm install sequelize dotenv
+  npm install sequelize dotenv express
+  npm install -D dotenv-cli sequelize-cli
+#+end_src
+
+#+begin_src javascript
+  /*
+    if you wanted to execute the following sql,
+    SELECT * FROM Users;
+    the equivalent finder method is
+
+    const users = await User.findAll();
+
+    const user = await Puppy.findOne();
+
+    or you can get just name and age
+    const puppies = away puppy.findAll({
+      attributes: ["name", "age"]
+    });
+  ,*/
+
+  // WHERE
+  const ralphPuppies = await puppy.findAll({
+    where: {
+      name: "ralph"
+    }
+  });
+#+end_src
+
+** comparison operators in sequelize are weird
+
+in sequelize, the comparison operators are inside an object called Op
+#+begin_src js
+  const { Op } = require("sequelize");
+
+  puppy.findOne({
+    where: {
+      id: {
+        [Op.gte]: 3,
+      },
+    },
+  });
+
+  puppy.findOne({
+    where: {
+      [Op.or]: [
+        {
+          name: "Ralph"
+        },
+        {
+          id: 3
+        }
+      ]
+    }
+  });
+#+end_src
+
+** inserting stuff into db
+
+=create= is =build= ing and =save= ing
+#+begin_src js
+  const newPuppy = Puppy.build({ name: "Goob", age: 3 });
+  // an error could happen when building due to invalid data
+  await newPuppy.validate();
+
+  await newPuppy.save();
+
+  // create does build + save inside itself
+  const newPuppy2 = Puppy.create({ name: "goobles", age: 2 });
+
+  const puppies = await Puppy.bulkCreate([
+    {name: "jerry", age: 4},
+    {name: "apples", age: 1},
+  ]);
+#+end_src
+
+** updating
+#+begin_src js
+  const puppy = await Puppy.findOne({ where: {id: 3}});
+#+end_src
+
+#+begin_src js
+  app.patch("/puppies/:puppyId", async (req, res) => {
+    const puppyId = req.params.puppyId;
+    const { name, age } = req.body;
+
+    const puppy = await Puppy.findOne({
+      where: {
+        id: puppyId
+      }
+    });
+  });
 #+end_src
