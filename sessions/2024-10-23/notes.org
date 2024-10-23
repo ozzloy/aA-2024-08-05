@@ -246,11 +246,20 @@ look for the age column in the Cats schema output.
   await queryInterface.addConstraint("Colors", {
     fields: ["name"],
     type: "unique",
-    name: "color_name_unique_constraint",
+    name: "colors_name_unique_constraint",
   });
+
   // down
   await queryInterface.removeConstraint(
     "Colors",
     "color_name_unique_constraint",
   );
 #+end_src
+
+run the migration, see if the column has the new constraint
+
+#+begin_src bash
+  npx dotenv -- sequelize db:migrate
+  sqlite3 db/dev.db ".schema Colors"
+#+end_src
+look at the bottom of the output to see the constraint
