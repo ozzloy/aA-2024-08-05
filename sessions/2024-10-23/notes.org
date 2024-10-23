@@ -283,3 +283,16 @@ then in the file,
     allowNull: true,
   });
 #+end_src
+
+* break!
+
+* sequelize
+setting up is the hardest part
+  + migrations
+  + models
+  + seeds
+
+#+begin_src bash
+  npx dotenv -- sequelize init
+  npx dotenv -- sequelize model:generate --name Puppy --attributes name:string
+#+end_src
