@@ -44,7 +44,7 @@ generic command structure
   npx sequelize model:generate --name <NameOfModel> --attributes <column1Name:type,column2Name:type>
 #+end_src
 
-** specifc example
+specifc example
 #+begin_src bash
   npx sequelize mode:generate --name Color --attributes name:string
 #+end_src
