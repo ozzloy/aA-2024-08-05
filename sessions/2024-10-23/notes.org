@@ -68,33 +68,6 @@ some popular constraints
         allowNull: false,
         unique: true,
       },
-      isPrimary: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-        validate: {
-          isPrimaryColor(value) {
-            const name = this.name ? this.name.toLowerCase() : "";
-            const primaryColors = ["red", "blue", "yellow"];
-            const shouldBePrimary = primaryColors.includes(name);
-            // attempted to set isPrimary to true,
-            //    but purple is not a primary color
-            // attempted to set isPrimary to false,
-            //    but red is a primary color
-            if (value !== shouldBePrimary) {
-              throw new Error(
-                "attempted to set isPrimary to " +
-                  value +
-                  ", but " +
-                  this.name +
-                  " is " +
-                  (shouldBePrimary ? "" : "not") +
-                  " a primary color.",
-              );
-            }
-          },
-        },
-      },
     },
     {
       sequelize,
@@ -115,3 +88,18 @@ some popular constraints
 #+end_src
 
 * bonus
+add a new attribute, =isPrimary=.
+
+to do that, first we will take down the table
+#+begin_src bash
+  npx dotenv -- sequelize db:migrate:undo
+#+end_src
+
+then we will modify the file
+=server/db/migrations/20241022153429-create-color.js=
+
+to add the column
+
+then go into the model file
+=server/db/models/color.js=
+
