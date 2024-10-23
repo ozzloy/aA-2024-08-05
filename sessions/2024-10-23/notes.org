@@ -102,3 +102,14 @@ some popular constraints
     },
   );
 #+end_src
+
+** run the migration
+#+begin_src bash
+  npx dotenv -- sequelize db:migrate
+#+end_src
+
+** check that it worked
+#+begin_src bash
+  sqlite3 db/dev.db ".schema Colors"
+  npm test
+#+end_src
