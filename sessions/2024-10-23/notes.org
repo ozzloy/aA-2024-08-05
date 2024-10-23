@@ -263,3 +263,10 @@ run the migration, see if the column has the new constraint
   sqlite3 db/dev.db ".schema Colors"
 #+end_src
 look at the bottom of the output to see the constraint
+
+** rename a column
+=20241022185838-rename-games-numPlayers-and-remove-estPlayTime.js=
+#+begin_src javascript
+    await queryInterface.renameColumn("Games", "numPlayers", "maxPlayers");
+    await queryInterface.removeColumn("Games", "estPlayTime");
+#+end_src
