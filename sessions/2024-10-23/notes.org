@@ -32,3 +32,4 @@ then redo again, so you can undo a specific migration
   npx dotenv sequelize db:migrate
   npx dotenv -- sequelize db:migrate:undo:all --to DATETIME-create-cats.js
 #+end_src
+* aa11-sequelize-models
