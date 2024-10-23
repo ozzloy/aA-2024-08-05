@@ -183,3 +183,23 @@ then write the =down= to remove these seed records
       name: ["red", "blue", "yellow"],
     });
 #+end_src
+
+* aa11-sequelize-validations-and-constraints
+#+begin_src bash
+  sh setup-commands.sh
+  cd server
+#+end_src
+
+add validations in model file =db/models/color.js=
+#+begin_src js
+        validate: {
+          len: {
+            args: [2, 20],
+            msg: "name must be between 2 and 20 characters",
+          },
+          noEndingInY(value) {
+            if (value.slice(-1) === "y") {
+              throw new Error("name must not end with 'y'");
+            }
+          },
+#+end_src
