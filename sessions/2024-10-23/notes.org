@@ -391,5 +391,13 @@ in sequelize, the comparison operators are inside an object called Op
         id: puppyId
       }
     });
+
+    puppy.set({
+      name,
+      age
+    });
+
+    await puppy.save();
+    res.json(puppy);
   });
 #+end_src
