@@ -26,3 +26,9 @@ should get this output
   $ sqlite3 db/dev.db ".schema Cats"
   -- Loading resources from /home/ozzloy/.sqliterc
 #+end_quote
+
+then redo again, so you can undo a specific migration
+#+begin_src bash
+  npx dotenv sequelize db:migrate
+  npx dotenv -- sequelize db:migrate:undo:all --to DATETIME-create-cats.js
+#+end_src
