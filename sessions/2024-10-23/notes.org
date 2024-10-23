@@ -401,3 +401,17 @@ in sequelize, the comparison operators are inside an object called Op
     res.json(puppy);
   });
 #+end_src
+
+** deleting is fun, you just destroy stuff
+
+first, find record to delete, then destroy it
+#+begin_src js
+  const puppy = await Puppy.findOne({ where: { id: 3 } });
+
+  await puppy.destroy();
+
+  // to delete multiple
+  await Puppy.destroy({
+    where: "something something, i missed it"
+  });
+#+end_src
