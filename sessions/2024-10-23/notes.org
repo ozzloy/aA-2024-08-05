@@ -60,7 +60,7 @@ some popular constraints
 #+end_src
 
 ** modify the model, js, validations
-#+begin_src ecmascript
+#+begin_src javascript
   Color.init(
     {
       name: {
