@@ -233,5 +233,3 @@ the file =server/db/migrations/DATETIME-add-age-to-cats.js=:
   // down
   await queryInterface.removeColumn("Cats", "age");
 #+end_src
-
-add stuff to Cats
