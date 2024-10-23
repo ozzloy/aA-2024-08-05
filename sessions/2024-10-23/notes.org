@@ -429,3 +429,5 @@ first, find record to delete, then destroy it
     await puppy.destroy();
   });
 #+end_src
+
+* foreign key column migrations
