@@ -203,3 +203,8 @@ add validations in model file =db/models/color.js=
             }
           },
 #+end_src
+* aa11-sequelize-modify-table-migrations
+#+begin_src bash
+  sh setup-commands.sh
+  cd server
+#+end_src
