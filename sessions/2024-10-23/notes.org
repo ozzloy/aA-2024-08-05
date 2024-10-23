@@ -207,4 +207,26 @@ add validations in model file =db/models/color.js=
 #+begin_src bash
   sh setup-commands.sh
   cd server
+  npx dotenv -- sequelize db:migrate
+  sqlite3 db/dev.db ".tables"
+  sqlite3 db/dev.db
+#+end_src
+
+#+begin_src sql
+  SELECT * FROM Colors;
+  SELECT * FROM Cats;
+  SELECT * FROM Games;
+#+end_src
+
+see if the tables exist and have data
+
+#+begin_src bash
+  npx sequelize migration:generate --name add-age-to-cats
+#+end_src
+
+the file =server/db/migrations/DATETIME-add-age-to-cats.js=:
+#+begin_src javascript
+    queryInterface.addColumn("Cats", "age", {
+      type: Sequelize.FLOAT,
+    });
 #+end_src
