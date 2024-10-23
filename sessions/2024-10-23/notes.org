@@ -159,5 +159,6 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Color;
 };
-
 #+end_src
+
+* aa11-sequelize-seeders
