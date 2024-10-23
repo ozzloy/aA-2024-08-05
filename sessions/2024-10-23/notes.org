@@ -239,3 +239,18 @@ the file =server/db/migrations/DATETIME-add-age-to-cats.js=:
   sqlite3 db/dev.db ".schema Cats"
 #+end_src
 look for the age column in the Cats schema output.
+
+** add constraints to existing column in Colors
+#+begin_src javascript
+  // up
+  await queryInterface.addConstraint("Colors", {
+    fields: ["name"],
+    type: "unique",
+    name: "color_name_unique_constraint",
+  });
+  // down
+  await queryInterface.removeConstraint(
+    "Colors",
+    "color_name_unique_constraint",
+  );
+#+end_src
