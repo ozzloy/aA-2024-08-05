@@ -176,3 +176,10 @@ and make sure to add the option =validate: true=
       { name: "yellow" },
     ], { validate: true });
 #+end_src
+
+then write the =down= to remove these seed records
+#+begin_src javascript
+    await queryInterface.bulkDelete("Colors", {
+      name: ["red", "blue", "yellow"],
+    });
+#+end_src
