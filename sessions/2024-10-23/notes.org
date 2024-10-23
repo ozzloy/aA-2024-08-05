@@ -268,7 +268,9 @@ look at the bottom of the output to see the constraint
 #+begin_src bash
   npx sequelize migration:generate --name rename-games-numPlayers-and-remove-estPlayTime
 #+end_src
-=20241022185838-rename-games-numPlayers-and-remove-estPlayTime.js=
+
+then in the file,
+=20241022185838-rename-games-numPlayers-and-remove-estPlayTime.js=:
 #+begin_src javascript
   // up
   await queryInterface.renameColumn("Games", "numPlayers", "maxPlayers");
