@@ -226,7 +226,10 @@ see if the tables exist and have data
 
 the file =server/db/migrations/DATETIME-add-age-to-cats.js=:
 #+begin_src javascript
-    queryInterface.addColumn("Cats", "age", {
-      type: Sequelize.FLOAT,
-    });
+  // up
+  queryInterface.addColumn("Cats", "age", {
+    type: Sequelize.FLOAT,
+  });
+  // down
+  await queryInterface.removeColumn("Cats", "age");
 #+end_src
