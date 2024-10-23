@@ -233,3 +233,9 @@ the file =server/db/migrations/DATETIME-add-age-to-cats.js=:
   // down
   await queryInterface.removeColumn("Cats", "age");
 #+end_src
+
+#+begin_src bash
+  npx dotenv -- sequelize db:migrate
+  sqlite3 db/dev.db ".schema Cats"
+#+end_src
+look for the age column in the Cats schema output.
