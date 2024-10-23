@@ -168,3 +168,11 @@ module.exports = (sequelize, DataTypes) => {
 #+begin_src javascript
 const { Color } = require("../models");
 #+end_src
+and make sure to add the option =validate: true=
+#+begin_src javascript
+    await Color.bulkCreate([
+      { name: "red" },
+      { name: "blue" },
+      { name: "yellow" },
+    ], { validate: true });
+#+end_src
