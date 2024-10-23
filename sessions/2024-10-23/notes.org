@@ -1,0 +1,9 @@
+* aa11-sequelize-create-migrations
+* aa11-sequelize-undo-migrations
+** setup commands
+=sh setup-commands.sh=
+#+begin_src bash
+  cd server
+  npx dotenv sequelize db:migrate
+  sqlite3 db/dev.db ".schema Cats"
+#+end_src
