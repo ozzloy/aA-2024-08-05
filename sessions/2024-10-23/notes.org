@@ -415,3 +415,22 @@ first, find record to delete, then destroy it
     where: "something something, i missed it"
   });
 #+end_src
+
+#+begin_src js
+  app.delete("/puppy/:puppyId", async (req, res) => {
+    const puppy = await Puppy.findOne({
+      where: {
+        id: puppyId
+      }
+    });
+
+    await puppy.destroy();
+
+    // to delete multiple
+    await Puppy.destroy({
+      where: {
+        name: "ralph"
+      }
+    });
+  });
+#+end_src
