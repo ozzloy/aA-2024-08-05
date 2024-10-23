@@ -162,3 +162,9 @@ module.exports = (sequelize, DataTypes) => {
 #+end_src
 
 * aa11-sequelize-seeders
+
+** bulkCreate
+=bulkCreate= is called on the model, so need to import it
+#+begin_src javascript
+const { Color } = require("../models");
+#+end_src
