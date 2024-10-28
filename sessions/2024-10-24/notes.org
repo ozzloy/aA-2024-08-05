@@ -1,0 +1,384 @@
+* doing from scratch a whole project
+
+TODO: make sure to make .env and put it in the right place, and make
+notes about that
+
+first install some packages
+#+begin_src bash
+  mkdir server-2024-10-24
+  cd server-2024-10-24
+  npm init -y
+  npm install express dotenv sequelize sqlite3
+  npm i -D sequelize-cli dotenv-cli nodemon
+#+end_src
+
+everything in server-2024-10-24 from now on
+
+in =.env.example=
+#+begin_src bash
+DB_FILE="db/dev.db"
+PORT=5001
+#+end_src
+
+in =.sequelizerc=
+#+begin_src js
+const path = require("path");
+
+module.exports = {
+  config: path.resolve("config", "database.js"),
+  "models-path": path.resolve("db", "models"),
+  "seeders-path": path.resolve("db", "seeders"),
+  "migrations-path": path.resolve("db", "migrations"),
+};
+#+end_src
+
+then in shell
+#+begin_src bash
+  npx sequelize init
+#+end_src
+
+inside the config folder, the database.js file helps sequelize connect
+to your database.
+
+delete all the contents in =config/database.js=, replace with
+#+begin_src js
+module.exports = {
+  development: {
+    storage: process.env.DB_FILE,
+    dialect: "sqlite",
+    seederStorage: "sequelize",
+    benchmark: true,
+    logQueryParameters: true,
+    typeValidation: true,
+    // logging: false
+  },
+};
+#+end_src
+
+** now start crating migrations and models
+#+begin_src bash
+  # generic template:
+  npx sequelize model:generate --name <NameOfModel> --attributes <columnName:type,column2:type>
+#+end_src
+
+when you have tables that depend on each other, make the table that is
+depended on first.
+
+so a puppy has an ownerId column, so we need to make the owners first.
+
+#+begin_src bash
+  npx sequelize model:generate --name Owner --attributes name:string
+#+end_src
+
+the =id=, =updatedAt= and =createdAt= columns will be made
+automatically, so they are not specified.
+
+now that owner exists, let's make puppies
+#+begin_src bash
+  npx sequelize \
+      model:generate \
+      --name Puppy \
+      --attributes name:string,ownerId:integer
+#+end_src
+
+adjust your models and migrations accordingly.  create constraints,
+validations, relationships.
+
+in the migration for puppy, =20241024155706-create-puppy.js=
+#+begin_src js
+      ownerId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Owners",
+        },
+        onDelete: "CASCADE",
+      },
+#+end_src
+there's an implicit assumption that the key will be "id" in the Owners
+table.
+
+in the models,
+=db/models/puppy.js=
+#+begin_src js
+    static associate(models) {
+      // define association here
+      Puppy.belongsTo(models.Owner, {
+        foreignKey: "ownerId",
+      });
+    }
+#+end_src
+tell the model which column to use
+
+
+in =db/models/owner.js=
+#+begin_src js
+    static associate(models) {
+      // define association here
+      Owner.hasMany(models.Puppy, {
+        foreignKey: "ownerId",
+        onDelete: "CASCADE",
+      });
+    }
+#+end_src
+
+now that migrations are adjusted, run them
+#+begin_src bash
+  npx dotenv -- sequelize db:migrate
+#+end_src
+
+you can check the db like this
+#+begin_src bash
+  sqlite3 db/dev.db ".schema Owners"
+  sqlite3 db/dev.db ".schema Puppies"
+#+end_src
+
+** once all the tables are made, then make seeders
+seeders are mock data to fill db with so you can write routes to create,
+update, delete things without having to restore them
+
+to create seeder files, we typically crate them using this command:
+#+begin_src bash
+  npx sequelize seed:generate --name <name-of-seed-file>
+#+end_src
+
+if you have tables that depend on each other, need to create depended
+on seed data first.  for example, seed owners before seeding puppies.
+
+this ordering is especially important on migrations and seeders.
+
+independent tables are created first, dependent tables last
+
+seeder file name convention: =starter-table-name=
+
+concrete example: =starter-owners=
+
+#+begin_src bash
+  npx sequelize seed:generate --name starter-owners
+#+end_src
+
+now typically inside seeder files, we use the queryInterface object and
+its methods to seed OR we import the model itself, and we use its
+methods to seed
+
+migrations are only given to the database to create tables and columns
+and constraints.
+
+models are given to us so we can use their methods to very elegantly
+query the database.
+
+seeders are just files that we execute to fill the database with mock
+data.
+
+if you want to create a bunch of records at once, you could use
+=queryInterface.bulkInsert("tableName", stuffToAdd)=.  however, you'd
+have to specify *every* column's value.
+
+for example, for puppies, you'd have to do name, id, ownerid, createAt,
+updatedAt.
+
+instead, import the model you want to seed.
+
+use the model's =bulkCreate= method.  it knows its own columns, so
+it will fill default values, and do validations.
+
+=db/seeders/TIMESTAMP-starter-owners.js=
+#+begin_src js
+  const { Owner } = require("../models");
+
+  //....
+
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await Owner.bulkCreate([
+      { name: "Laura" },
+      { name: "Bob" },
+      { name: "Jill" },
+      { name: "Jet" },
+    ]);
+  },
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete("Owners", {
+      name: seeds.map((seed) => seed.name),
+    });
+  },
+};
+#+end_src
+
+now let's make our puppies seeders
+#+begin_src bash
+  npx sequelize seed:generate --name starter-puppies
+#+end_src
+
+#+begin_src js
+const { Puppy } = require("../models");
+
+seeds = [
+  { name: "apples", ownerId: 1 },
+  { name: "ralph", ownerId: 2 },
+  { name: "goob", ownerId: 3 },
+];
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    await Puppy.bulkCreate(seeds);
+  },
+
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete("Puppies", {
+      name: seeds.map((seed) => seed.name),
+    });
+  },
+};
+#+end_src
+
+now actually make the seeds
+#+begin_src bash
+  npx dotenv sequelize db:seed:all
+#+end_src
+
+** now routes in =app.js=
+#+begin_src js
+const express = require("express");
+const app = express();
+app.use(express.json());
+
+const { Owner, Puppy } = require("./db/models");
+
+app.get("/owners", async (req, res) => {
+  const owners = await Owner.findAll();
+
+  res.json(owners);
+});
+
+app.get("/puppies", async (req, res) => {
+  const puppies = await Puppy.findAll();
+
+  res.json(puppies);
+});
+
+const PORT = 5000;
+app.listen(PORT, () => console.log("server listening on port " + PORT));
+#+end_src
+
+** sequelize is smart
+associations are useless if we're not querying with it
+
+we create the associations so that we can query in really interesting
+ways.
+
+*** GET method
+when a model has an association (belongsTo, hasMany), then that model
+is given a method getTableName
+
+for example, puppies belong to owners
+
+so the Puppy model has a getOwner method
+
+**** get owner info from puppy
+#+begin_src js
+// get owner from puppy
+app.get("/puppy/ownerInfo/:puppyId", async (req, res) => {
+  const { puppyId } = req.params;
+  const puppy = await Puppy.findByPk(puppyId);
+  const owner = await puppy.getOwner();
+  res.json(owner);
+});
+#+end_src
+
+*** =includes= property
+allows us to include information about a related table in a query
+#+begin_src js
+app.get("/puppies/:puppyId", async (req, res) => {
+  const { puppyId } = req.params;
+  const puppyInfo = await Puppy.findOne({
+    where: {
+      id: puppyId,
+    },
+    include: Owner,
+  });
+});
+#+end_src
+
+*** aggregate functions exist on models as methods
+egs =Puppy.count=
+
+* aa11-sequelize-insert-with-assocation
+#+begin_src bash
+  sh setup-commands.sh
+#+end_src
+implement post route handlers
+
+associate musicians with multiple instruments
+
+** step 1: create an associate model one-to-many
+
+use the =creator= method for the =has-many= association
+
+we can use the band's creator method.
+#+begin_src js
+// STEP 1: Creating from an associated model (One-to-Many)
+app.post("/bands/:bandId/musicians", async (req, res, next) => {
+  let { bandId } = req.params;
+  let band = await Band.findByPk(bandId);
+  let { firstName, lastName } = req.body;
+
+  let musician = await band.createMusician({
+    firstName,
+    lastName,
+  });
+
+  res.json({
+    message: "jcreated new musician for band " + band.name + ".",
+    musician,
+  });
+});
+#+end_src
+** step 2: connecting two existing records many-to-many
+
+we know the instrumentIds is going to be an array in the request body
+
+#+begin_src js
+// STEP 2: Connecting two existing records (Many-to-Many)
+app.post("/musicians/:musicianId/instruments", async (req, res, next) => {
+  const { musicianId } = req.params;
+  let musician = await Musician.findByPk(musicianId);
+
+  let { instrumentIds } = req.body;
+
+  await musician.addInstruments(instrumentIds);
+
+  res.json({
+    message:
+      "Associated " +
+      musician.name +
+      " with instruments " +
+      instrementIds +
+      ".",
+  });
+});
+#+end_src
+
+* aa11-sequelize-dynamic-seeding
+dynamic seeding
+
+#+begin_src sh
+  sh setup-commands.sh
+#+end_src
+
+run this:
+#+begin_src bash
+  npx sequelize seed:generate --name start-musicians
+#+end_src
+
+copy over from readme into place seeders file
+
+need to import the band model
+=DATETIME-start-musicians.js=
+#+begin_src js
+#+end_src
+
+* aa11-sequelize-aggregates-lazy
+

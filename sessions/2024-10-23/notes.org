@@ -431,3 +431,221 @@ first, find record to delete, then destroy it
 #+end_src
 
 * foreign key column migrations
+https://appacademy.instructure.com/courses/314/pages/foreign-key-column-migrations-2?module_item_id=56329
+
+* aa11-sequelize-select-queries
+#+begin_src js
+  const allPuppies = await Puppy.findAll({ order: [["name", "ASC"]] });
+#+end_src
+
+** step 2
+#+begin_src js
+  const chippedPuppies = await Puppy.findAll({
+    where: {
+      microchipped: true,
+    },
+    order: [
+      ["ageYrs", "DESC"],
+      ["name", "ASC"],
+    ],
+  });
+#+end_src
+
+** step 3: select one puppy by name
+#+begin_src js
+  const { name } = req.params;
+  const puppyByName = await Puppy.findOne({
+    where: { name },
+  });
+
+  res.json(puppyByName);
+#+end_src
+** step 4
+#+begin_src js
+  const { id } = req.params;
+  const puppyById = await Puppy.findOne({ where: { id } });
+
+  res.json(puppyById);
+#+end_src
+* aa11-sequelize-insert
+** step 1: build a new puppy
+#+begin_src js
+    const puppy = await Puppy.build({
+      name: "Trudy",
+      ageYrs: 2,
+      weightLbs: 38,
+      breed: "Brittany Spaniel",
+      microchipped: false,
+    });
+    await puppy.save();
+    return puppy;
+#+end_src
+
+** step 2: create a new puppy
+#+begin_src js
+    const puppy = await Puppy.create({
+      name: "Beans",
+      ageYrs: 1.6,
+      weightLbs: 42,
+      breed: "Bulldog",
+      microchipped: true,
+    });
+    return puppy;
+#+end_src
+
+** step 3: now we create endpoints
+#+begin_src js
+  app.post("/puppies/build", async (req, res, next) => {
+    const { name, ageYrs, breed, weightLbs, microchipped } = req.body;
+    const puppy = Puppy.build({
+      name,
+      ageYrs,
+      breed,
+      weightLbs,
+      microchipped,
+    });
+    await puppy.save();
+    res.json({
+      message: "successfully created new puppy record",
+      data: puppy,
+    });
+  });
+
+  //....
+  app.post("/puppies/create", async (req, res, next) => {
+    const { name, ageYrs, breed, weightLbs, microchipped } = req.body;
+    const puppy = await Puppy.create({
+      name,
+      ageYrs,
+      breed,
+      weightLbs,
+      microchipped,
+    });
+    res.json({
+      message: "successfully created new puppy record",
+      data: puppy,
+    });
+  });
+#+end_src
+
+* =cd ../aa11-sequelize-update-delete-singular/=
+** step 1
+#+begin_src js
+app.put("/puppies/:id", async (req, res, next) => {
+  const { id } = req.params;
+  const puppy = await Puppy.findByPk(id);
+
+  const { ageYrs, weightLbs, microchipped } = req.body;
+
+  if (ageYrs !== undefined) puppy.ageYrs = ageYrs;
+  if (weightLbs !== undefined) puppy.weightLbs = weightLbs;
+  if (microchipped !== undefined) puppy.microchipped = microchipped;
+
+  await puppy.save();
+
+  res.json({
+    message: "updated puppy " + id,
+    puppy,
+  });
+});
+#+end_src
+
+** step 2: delete puppy
+#+begin_src js
+app.delete("/puppies/:id", async (req, res, next) => {
+  const { id } = req.params;
+  const puppy = await Puppy.findOne({ where: { id } });
+  await puppy.destroy();
+  res.json({
+    message: "deleted puppy " + id,
+    puppy,
+  });
+});
+#+end_src
+
+* foreign key migrations
+** step 1 one to many
+#+begin_src bash
+  npx sequelize migration:generate --name add-bandId-to-musicians
+#+end_src
+
+add band id to musicians.js
+#+begin_src js
+  await queryInterface.addColumn("Musicians", "bandId", {
+    
+                                 allowNull: false,
+                                 references: {
+                                   model: "Bands",
+                                   },
+                                 onDelete: "CASCADE"
+                                 }
+#+end_src
+
+#+begin_src js
+  await queryInterface.removeColumn("Musicians", "bandId");
+#+end_src
+
+
+musician.js
+#+begin_src js
+  static associate(models) {
+    Musician.belongsTo(
+      models.Band,
+      { foreignKey: "bandId" }
+    )
+  }
+#+end_src
+
+band.js
+#+begin_src js
+  static associate(models){
+    Band.hasMany(
+      models.Musician,
+      { foreignKey: "bandId",
+        onDelete: "CASCADE"
+      }
+    )
+  }
+#+end_src
+
+** many to many
+need to create a join table
+
+instrument <=> musician
+
+#+begin_src bash
+  npx sequelize migration:generate --name create-musician-instrument
+#+end_src
+
+db/migration/create-musician-instrument.js
+#+begin_src js
+  //up
+  await queryInterface.
+    id: {
+      primaryKey: true,
+      },
+  musicianId: {
+    type: sequelize.integer,
+    allowNull: false,
+  },
+  instrumentId: {
+    type: sequelize.integer,
+    allowNull: false,
+    references: {
+      model: "Instruments"
+    }
+
+
+  //down
+    await queryInterface.dropTable("MusicianInstruments");
+#+end_src
+
+now add the models for these two guys
+
+db/models/musicianIntrument.js
+
+copy paste the migration
+#+begin_src js
+  musicianId: datatypes.integer,
+  intrumentId: datatypes.integer
+#+end_src
