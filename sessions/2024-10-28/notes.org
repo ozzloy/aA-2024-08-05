@@ -1,0 +1,98 @@
+* serving static assets
+https://appacademy.instructure.com/courses/314/pages/serving-static-files-in-express-2?module_item_id=56391
+* scrum
+  + different roles
+  + scrum master delegates jobs
+
+** scrum master
+  + will take overall goal from product manager.
+  + will break into individual goals
+    + how often are we meeting?
+    + how do we collaborate
+  + make standups with backend team
+** dev team
+  + encapsulates a bunch of things, like qa tester, db admin, ui
+    designer, ux engineer, programmer, architect
+** product owner
+  + has a vision of what needs to be created
+  + adds things to backlog to accomplish that vision
+  + sets final deadline
+** backlog
+  + priority, or something idk
+** sprints
+  + time boxed
+    + eg. 3 weeks.
+  + typically all sprints have same time length
+  + work on same thing during whole sprint, don't change during sprint
+** daily scrum
+  + 15-30 minutes
+  + questions to answer during standup
+    + what did i accomplish yesterday
+    + what do i hope to accomplish today
+    + what obstacles
+
+scrum is an implementation of agile
+
+* mod 4 portfolio assessment grading criteria
+  + need full api docs
+  + db schema
+* next week is airbnb project
+
+https://appacademy.instructure.com/courses/314/pages/exercise-fill-out-your-api-docs-2?module_item_id=56401
+
+look at w12d5 to get extra info about what we're doing
+
+design your db
+this is the todo list:
+
+  1. api docs:
+    https://appacademy.instructure.com/courses/314/pages/exercise-fill-out-your-api-docs-2?module_item_id=56401
+  2. db schema:
+    https://appacademy.instructure.com/courses/314/pages/database-schema-used-in-grading-2?module_item_id=56485
+  3. authenticate me:
+    https://appacademy.instructure.com/courses/314/assignments/17696?module_item_id=61514
+  4. everything's about this
+    https://github.com/appacademy/assessment-for-sprint-13-api-documentation-airbnb
+
+* project
+
+pairing with aaron garcia
+
+Exercise: Designing Your Database Schema
+https://appacademy.instructure.com/courses/314/pages/exercise-design-your-database-2?module_item_id=56402
+
+Mod 4 Portfolio Project Assessment: Grading Criteria
+https://appacademy.instructure.com/courses/314/pages/grading-criteria-2?module_item_id=56396
+
+express sequelize sqlite3
+
+do pagination
+
+https://appacademy.instructure.com/courses/314/assignments/17746?module_item_id=56412
+
+https://github.com/appacademy/aa11-sequelize-pagination
+
+* relationships
+** migrations
+  + migrations are files that are used to create tables in the db
+  + or manipulate existing stuff in the db
+** models
+  + models are for us
+
+    one to many
+
+    many to many
+
+    team belongs to a sport
+
+    sport has many teams
+    #+begin_src js
+      Team.belongsTo(models.Sport, ...);
+      Sport.hasMany(models.Team, ...);
+    #+end_src
+
+* our projects
+    CRUD spots, users, images, bookings
+
+* double the people
+november 11
