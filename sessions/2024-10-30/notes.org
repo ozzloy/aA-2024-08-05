@@ -1,0 +1,39 @@
+* security
+** security in sequel injections
+sanitize your inputs
+*** CSRF tricking user to perform actions on behalf of attacker
+one cookie is http only
+
+need to inject csrf token
+
+*** CORS cross origin resource sharing
+who is allowed to make requests
+
+you can say "same site" or "same site and google" or whatever u want
+
+app.use(cors({origin: [/patterns/, "strings too", "domain.tld"]
+
+*** XSS cross site scripting
+injecting js into site
+
+manipulte DOM, make fetch requests
+
+exfiltrate info by fetching to hecker's
+
+* git
+** branch
+
+* practice: cors, xss, csrf
+https://github.com/appacademy/aa12-cors
+https://github.com/appacademy/aa12-xss
+https://github.com/appacademy/aa12-csrf-exercise
+* authenticate me backend
+
+* for pair project
+public
+
+** inside repo, greenBnB,
+root:
+  backend:
+  frontend:
+  readme

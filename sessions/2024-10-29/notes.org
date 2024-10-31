@@ -1,0 +1,27 @@
+* work on group project
+https://github.com/appacademy/aa12-authenticate-me
+
+* sequelize
+  + do very specific queries on db
+  + don't get a lot of stuff and sort it out in js
+    rather than finding all the users and then sorting the result in js,
+  + make sure the sql query returns them sorted already.
+  + use index on columns you search often
+  + refactor to eliminate N+1 queries
+  + paginate responses
+
+* search filters
+  + send query strings in url
+  + GET /sofas?color=light+brown&minWidth=71&design=modular
+    + endpoint is GET /sofas
+    + get req.query to get color, minWidth, design
+
+* practice
+  + pagination
+  + search filters
+
+  + long practice: sequelize in the real world
+
+* pagination practice
+* search query practice
+aa11-sequelize-search-params
