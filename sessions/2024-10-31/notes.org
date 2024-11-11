@@ -3,3 +3,28 @@ json web token
 
 jot
 
+* aside: encoding v encrypting v hashing
+encoding just translates between representation
+
+encrypting should be reversible only with the private key
+
+hashing is one way, irreversible.
+
+* roles
+  + customer roles
+  + owner role
+* hashing pws
+never store plaintext
+
+* rainbow table
+precomputed tables of hashes of common pws
+
+* bcrypt
+we love bcrypt
+
+helps us hash
+
+* solo time
+  https://github.com/appacademy/aa12-sequelize-scope
+  https://github.com/appacademy/aa12-jwt-exploration
+  then work on express and sequelize from scratch
