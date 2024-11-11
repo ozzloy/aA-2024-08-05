@@ -1,0 +1,61 @@
+* react is great
+
+** learn redux, companies love it
+
+it's slimmer
+
+we've been using vanilla JS, HTML, and CSS to build our frontend
+applications.
+
+in js we've been using the DOM to manipulate our web pages.
+
+React is a frontend library that helps us create big frontend
+applications pretty quickly
+
+helps us with the creation and updation of DOM nodes
+
+#+begin_src js
+  let p = document.createElement("p");
+  document.getElementById("idk").appendChild(p);
+#+end_src
+
+react and angular
+
+python -> Django
+
+react uses JSX javascript and xml
+
+react doesn't care about how page is laid out.
+
+we can lay out our pages however we want
+
+* how to react
+
+** used to have
+
+create-react-app
+
+created boiler plate
+
+deprecated
+
+** now have Vite -> boilerplate, but smaller
+
+let's us pick and choose stuff
+
+we have to import more stuff
+
+start tinier, add stuff.
+
+** jsx, browser not understand
+
+** react is all about components
+
+break up the UI into pieces that are reusable
+
+component based thinking.
+
+combination of parent and child components
+
+npm create vite@latest frontent -- --template react
+
