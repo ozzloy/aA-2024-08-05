@@ -90,3 +90,21 @@ take in json data and turn it into a python dict
 #+begin_src python
   request.args.get("cat_id")
 #+end_src
+
+** route parameters
+to accept a route parameter, put it into angled brackets
+#+begin_src python
+  @app.route("/cat/<cat_id>")
+  def create_cat(cat_id):
+      print(cat_id)
+      return cat_id
+#+end_src
+
+*** type checking on route params
+
+#+begin_src python
+  @app.route("/cat/<int: cat_id>")
+  def create_cat(cat_id, methods=["POST"]):
+      print(cat_id)
+      return cat_id
+#+end_src
