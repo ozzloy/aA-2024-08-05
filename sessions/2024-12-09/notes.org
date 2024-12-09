@@ -119,3 +119,8 @@ it type checks, and type coerces
   def say_bye():
       print("bye")
 #+end_src
+
+* mor routs
+create a routes folder to hold all the routes
+
+create a route file for each category of routes
