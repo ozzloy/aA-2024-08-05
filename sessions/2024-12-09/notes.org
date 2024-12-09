@@ -1,0 +1,22 @@
+* python
+#+begin_src bash
+  mkdir new-proj
+  cd new-proj
+  pipenv install Flask
+#+end_src
+pipenv creates a new virtualenv for the project
+#+begin_src bash
+  wget -O .gitignore \
+       https://raw.githubusercontent.com/github/gitignore/refs/heads/main/Python.gitignore
+#+end_src
+
+=project-dir/backend/app/app.py=
+#+begin_src python
+  from flask import Flask
+
+  app = Flask(__name__) # instantiate the server
+
+  @app.route("/")
+  def home():
+      pass
+#+end_src
