@@ -124,3 +124,20 @@ it type checks, and type coerces
 create a routes folder to hold all the routes
 
 create a route file for each category of routes
+#+begin_src bash
+  mkdir routes
+  touch routes/cats.py
+#+end_src
+
+=routes/cats.py=
+#+begin_src python
+  from flask import Blueprint
+
+  bp = Blueprint("cats", __name__, url_prefix="/cats")
+  # all routes in this file will start with "/cats"
+
+
+  @bp.route("/")
+  def get_all_cats():
+      pass
+#+end_src
