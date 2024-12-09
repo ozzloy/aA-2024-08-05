@@ -29,3 +29,9 @@ def update_cat2(cat_id):
 @app.route("/beep")
 def specify():
     response = None
+
+
+@app.route("/demo-guy")
+def demo_guy():
+    cat = {"name": "king", "age": 13}
+    return jsonify(cat)
