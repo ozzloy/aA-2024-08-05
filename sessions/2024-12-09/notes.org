@@ -74,7 +74,8 @@ decorator
   @app.route("/route", methods=["POST", "PUT", "DELETE", "PATCH"])
 #+end_src
 
-to get request body out of a request, there are a few different ways
+** to get request body out of a request
+there are a few different ways
 #+begin_src python
   from flask import request
 #+end_src
@@ -85,7 +86,7 @@ another way
 #+end_src
 take in json data and turn it into a python dict
 
-to get data out of query strings,
+** to get data out of query strings,
 #+begin_src python
   request.args.get("cat_id")
 #+end_src
