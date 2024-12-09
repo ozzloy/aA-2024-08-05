@@ -62,3 +62,18 @@ OR
 #+begin_src bash
   pipenv run flask run
 #+end_src
+
+specify port
+#+begin_src bash
+  flask run -p 5001
+#+end_src
+
+to crate an endpoint for requests other than get, add methods into the
+decorator
+#+begin_src python
+  @app.route("/route", methods=["POST", "PUT", "DELETE", "PATCH"])
+#+end_src
+
+to get request body out of a request, there are a few different ways
+#+begin_src python
+#+end_src
