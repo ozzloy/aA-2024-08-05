@@ -20,7 +20,7 @@ def update_cat(cat_id):
 
 
 @app.route("/cat/<int: cat_id>", methods=["POST"])
-def update_cat(cat_id):
+def update_cat2(cat_id):
     print(cat_id)
     return cat_id
 
