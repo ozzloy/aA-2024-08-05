@@ -40,3 +40,11 @@ we need to install python-dotenv in order to be able to read these
 env variables
 
 the environment variable that you need is ~FLASK_APP=filename.py~
+
+NODEMON equivalent for flask -> add an env var FLASK_DEBUG=true
+
+=project/.flaskenv=
+#+begin_src bash
+  FLASK_APP=server.py
+  FLASK_DEBUG=true
+#+end_src
