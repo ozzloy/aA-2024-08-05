@@ -101,7 +101,7 @@ to accept a route parameter, put it into angled brackets
 #+end_src
 
 *** type checking on route params
-
+it type checks, and type coerces
 #+begin_src python
   @app.route("/cat/<int: cat_id>")
   def create_cat(cat_id, methods=["POST"]):
