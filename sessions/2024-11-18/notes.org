@@ -1,0 +1,46 @@
+* stuff
+
+* redux
+
+a way of storing and retrieving data, and being able to have other
+code be aware of and do something based on the fact of the update, and
+the old and new values in the update
+
+#+begin_src js
+  const addPuppy = (newPuppy) => {
+    return {
+      type: "ADD_PUPPY",
+      payload: newPuppy,
+    };
+  };
+
+  let newPuppyActionObj = addPuppy({
+    id: 1,
+    name: "Ralphie",
+  });
+
+  store.dispatch({
+    type: "ADD_PUPPY",
+    payload: newPuppy,
+  })
+
+  // with the action creator
+  store.dispatch(addPuppy(newPuppy));
+
+  const onSubmit = (e) => {
+    e.preventDefault;
+
+    const newPuppy = {
+      //...
+    }
+
+    let res = await fetch("url", {
+      method: "POST",
+      //...
+    })
+  }
+#+end_src
+
+* scorecard
+
+https://appacademy.instructure.com/courses/315/pages/react-solo-project-scorecard-2?module_item_id=56970

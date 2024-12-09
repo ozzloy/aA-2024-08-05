@@ -20,3 +20,5 @@ pipenv creates a new virtualenv for the project
   def home():
       pass
 #+end_src
+
+to make endpoints, use =@app.route(ROUTE_HERE)=

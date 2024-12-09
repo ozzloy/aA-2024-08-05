@@ -57,5 +57,272 @@ component based thinking.
 
 combination of parent and child components
 
+#+begin_src bash
 npm create vite@latest frontent -- --template react
+#+end_src
+
+  + go into app.jsx modify it
+  + don't manipulate main until later
+
+  + cool
+#+begin_src js
+  let navbar3 = {
+    <>
+      <p></p>
+      <p></p>
+    <>
+  }
+#+end_src
+=<>= is called "fragment"
+
+  + not cool
+#+begin_src js
+  let navbar3 = {
+      <p></p>
+      <p></p>
+  }
+#+end_src
+must have exactly one top level element
+
+* functional components
+* good practices
+
+filename matches name of component inside of it
+
+#+begin_src js
+  function Something() {
+    return (
+      <div>
+        hey
+        <NavBar />
+      </div>
+  }
+#+end_src
+
+#+begin_src js
+  import "./App.??"
+  function NavBar() {
+    return (
+      <nav>
+        <div id="nav-links">
+      </nav>
+    )
+  }
+  // ?? export??
+#+end_src
+
+* recruiters are not engineers
+learn enough CSS to make site shiny to recruiters
+
+* props and passing props through components
+
+we sometimes need to pass variabls from the parent to the child
+
+there is no way to pass stuff from child to parent
+
+parents can pass down variables, functions, any js to children
+
+called "prop drilling"
+
+if you're drilling a lot of props, refactor to use more sophisticated
+state management
+
+in the child component
+
+#+begin_src js
+  function NavBar({ firstName, lastName }) {
+    return (
+      <nav>
+        <div id="nav-links"></div>
+        <h1>{firstName}</h1>
+      </nav>
+    )
+  }
+#+end_src
+
+** conditionally rendering jsx components
+
+#+begin_src js
+  function NavBar({ firstName, lastName }) {
+    return (
+      <nav>
+        <div id="nav-links"></div>
+        <h1>{firstName}</h1>
+        {lastName && <h2>hi</h2>}
+      </nav>
+    )
+  }
+#+end_src
+
+* use react router to navigate between pages
+
+* reading through https://react.dev/learn
+
+capitalized letters means react component, lower case means html tag
+
+  curly braces are double interpolation
+#+begin_src js
+  return ( // into html
+    <h1>
+      {user.name} // back to js
+    </h1>
+  );
+#+end_src
+
+double curly bracket here is an object inside js-escape brackets
+#+begin_src js
+  <img
+    className="avatar"
+    src={user.imageUrl}
+    alt={'Photo of ' + user.name}
+    style={{
+      width: user.imageSize,
+      height: user.imageSize
+    }}
+  />
+#+end_src
+
+one way to do conditional content:
+#+begin_src js
+  let content;
+  if (isLoggedIn) {
+    content = <AdminPanel />;
+  } else {
+    content = <LoginForm />;
+  }
+  return (
+    <div>
+      {content}
+    </div>
+  );
+#+end_src
+
+another more compact way:
+#+begin_src js
+  <div>
+    {isLoggedIn ? (
+      <AdminPanel />
+    ) : (
+      <LoginForm />
+    )}
+  </div>
+#+end_src
+
+or even shorter version
+
+the example they give
+#+begin_src js
+  <div>
+    {isLoggedIn && <AdminPanel />}
+  </div>
+#+end_src
+
+or including the loginform
+#+begin_src js
+  <div>
+    {isLoggedIn && <AdminPanel /> || <LoginForm />}
+  </div>
+#+end_src
+
+** lists
+#+begin_src js
+  const listItems = products.map(product =>
+    <li key={product.id}>
+      {product.title}
+    </li>
+  );
+
+  return (
+    <ul>{listItems}</ul>
+  );
+#+end_src
+key on each item must be unique among the list
+
+provides an id so react can tell what happened
+if things get rearranged
+
+** event handling
+#+begin_src js
+  function MyButton() {
+    function handleClick() {
+      alert('You clicked me!');
+    }
+
+    return (
+      <button onClick={handleClick}>
+        Click me
+      </button>
+    );
+  }
+#+end_src
+
+** updating screen
+use state and set state to update screen
+#+begin_src js
+  import { useState } from 'react';
+  function MyButton() {
+    const [count, setCount] = useState(0);
+
+    function handleClick() {
+      setCount(count + 1);
+    }
+
+    return (
+      <button onClick={handleClick}>
+        Clicked {count} times
+      </button>
+    );
+  }
+#+end_src
+
+each =MyButton= will get its own separate state
+
+** hooks
+functions that start with =use= like =useState= are hooks.
+
+only call hooks at top of component, or other hooks
+
+** sharing data
+to share data between components, find their closest common ancestor and
+put the data there.
+
+passing data down from parent to child
+#+begin_src js
+  // MyApp.jsx
+  export default function MyApp() {
+    const [count, setCount] = useState(0);
+
+    function handleClick() {
+      setCount(count + 1);
+    }
+
+    return (
+      <div>
+        <h1>Counters that update together</h1>
+        <MyButton count={count} onClick={handleClick} />
+        <MyButton count={count} onClick={handleClick} />
+      </div>
+    );
+  }
+  //MyButton.jsx
+  function MyButton({ count, onClick }) {
+    return (
+      <button onClick={onClick}>
+        Clicked {count} times
+      </button>
+    );
+  }
+#+end_src
+
+* tik tok tao time!
+
+* end of class notes
+
+* aa14-react-functional-components
+https://github.com/appacademy/aa14-react-functional-components-jsx
+** App.jsx
+#+begin_src js
+  import Showcase from "./ShowCase";
+  
+#+end_src
 
