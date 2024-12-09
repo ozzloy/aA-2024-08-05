@@ -108,3 +108,14 @@ it type checks, and type coerces
       print(cat_id)
       return cat_id
 #+end_src
+
+** make endpoints that run before and after requests
+
+#+begin_src python
+  @app.before_request
+  def say_hi():
+      print("hi")
+  @app.after_request
+  def say_bye():
+      print("bye")
+#+end_src
