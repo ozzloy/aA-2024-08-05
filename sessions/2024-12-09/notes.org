@@ -18,7 +18,7 @@ pipenv creates a new virtualenv for the project
 
   @app.route("/")
   def home():
-      pass
+      return "<h1>home page</h1>"
 #+end_src
 
 to make endpoints, use =@app.route(ROUTE_HERE)=
@@ -47,4 +47,18 @@ NODEMON equivalent for flask -> add an env var ~FLASK_DEBUG=true~
 #+begin_src bash
   FLASK_APP=server.py
   FLASK_DEBUG=true
+#+end_src
+
+** options to run server
+#+begin_src bash
+  # opens a shell in virtual env
+  pipenv shell
+
+  flask run
+#+end_src
+
+OR
+
+#+begin_src bash
+  pipenv run flask run
 #+end_src
