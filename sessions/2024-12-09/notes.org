@@ -38,3 +38,5 @@ the environment variable that you need is FLASK_APP=filename.py
 
 we need to install python-dotenv in order to be able to read these
 env variables
+
+the environment variable that you need is ~FLASK_APP=filename.py~
