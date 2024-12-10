@@ -98,8 +98,32 @@ def change_car_owner(car_id, new_owner_id):
 change_car_owner(5, 1)
 
 print_all_cars()
+
+
 # (1993, 'Mazda', 'Rx7', 1)
 # (1995, 'Mitsubishi', 'Eclipse', 2)
 # (1994, 'Acura', 'Integra', 3)
 # (2000, 'Ford', 'Lightning', 2)
 # (1994, 'Toyota', 'Supra', 1)       <- owner_id is now 1
+def delete_car(car_id):
+    """
+    Delete the record for a car given an id for that car
+    :param car_id: <int> the id of the car record to remove
+    """
+    with sqlite3.connect(DB_FILE) as conn:
+        curs = conn.cursor()
+        curs.execute(
+            """
+                     DELETE FROM cars WHERE id = :car_id
+                     """,
+            {"car_id": car_id},
+        )
+
+
+delete_car(2)
+
+print_all_cars()
+# (1993, 'Mazda', 'Rx7', 1)
+# (1994, 'Acura', 'Integra', 3)
+# (2000, 'Ford', 'Lightning', 2)
+# (1994, 'Toyota', 'Supra', 1)
