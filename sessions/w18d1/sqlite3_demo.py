@@ -76,3 +76,30 @@ print_all_cars()
 # (1994, 'Acura', 'Integra', 3)
 # (2000, 'Ford', 'Lightning', 2)
 # (1994, 'Toyota', 'Supra', 2)
+
+
+def change_car_owner(car_id, new_owner_id):
+    """
+    Update the owner of a car, both by record id
+    :param car_id: <int> the id of the car to change
+    :param new_owner_id: <int> the owner_id to give ownership to
+    """
+    with sqlite3.connect(DB_FILE) as conn:
+        curs = conn.cursor()
+        curs.execute(
+            """
+                     UPDATE cars SET owner_id = :new_owner_id
+                     WHERE id = :car_id
+                     """,
+            {"car_id": car_id, "new_owner_id": new_owner_id},
+        )
+
+
+change_car_owner(5, 1)
+
+print_all_cars()
+# (1993, 'Mazda', 'Rx7', 1)
+# (1995, 'Mitsubishi', 'Eclipse', 2)
+# (1994, 'Acura', 'Integra', 3)
+# (2000, 'Ford', 'Lightning', 2)
+# (1994, 'Toyota', 'Supra', 1)       <- owner_id is now 1
